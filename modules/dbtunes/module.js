@@ -76,14 +76,34 @@ angular.module('DbTunes', []).
 				 return deferred.promise;	
 			},
 		}
-	}]).
-	directive('albumSongQuestion', function(){
+	}])
+	.controller('QuestionController', ['$scope','$log', function($scope, $log){
+				$scope.select = function(option){
+					if($scope.data.answer == option){
+						$log.info('Dogru cevap');
+					}else{
+						$log.error('Yanlis cevap');
+					}
+				};
+			}])
+	.directive('albumSongQuestion', function(){
 		return {
 			templateUrl: 'modules/dbtunes/templates/album-song-question.html',
 			//function('link')
 			scope: {
 				data :'=data'
-			}
+			},
+			controller: 'QuestionController'
+			/*,
+			controller: ['$scope','$log', function($scope, $log){
+				$scope.select = function(option){
+					if($scope.data.answer == option){
+						$log.info('Dogru cevap');
+					}else{
+						$log.error('Yanlis cevap');
+					}
+				};
+			}]*/
 		}
 	}).
 	directive('songReleasedAtQuestion', function(){
@@ -91,7 +111,8 @@ angular.module('DbTunes', []).
 			templateUrl: 'modules/dbtunes/templates/song-released-at-question.html',
 			scope: {
 				data :'=data'
-			}
+			},
+			controller: 'QuestionController'
 		}
 	}).
 	directive('songPairsReleasedSameYearQuestion', function(){
@@ -99,7 +120,8 @@ angular.module('DbTunes', []).
 			templateUrl: 'modules/dbtunes/templates/song-pairs-released-same-year-question.html',
 			scope: {
 				data :'=data'
-			}
+			},
+			controller: 'QuestionController'
 		}
 	}).
 	directive('artistReleasedMostAlbumsQuestion', function(){
@@ -107,9 +129,11 @@ angular.module('DbTunes', []).
 			templateUrl: 'modules/dbtunes/templates/artist-released-most-albums-question.html',
 			scope: {
 				data :'=data'
-			}
+			},
+			controller: 'QuestionController'
 		}
 	})
+	;
 
 	// more templates 
     // .controller('SongController',['$scope','Report', function( $scope, Report){
