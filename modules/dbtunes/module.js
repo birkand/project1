@@ -79,11 +79,16 @@ angular.module('DbTunes', []).
 	}])
 	.controller('QuestionController', ['$scope','$log', function($scope, $log){
 				$scope.select = function(option){
+					$scope.selected = option;
 					if($scope.data.answer == option){
 						$log.info('Dogru cevap');
+						$scope.status = true;
+
 					}else{
 						$log.error('Yanlis cevap');
+						$scope.status = false;
 					}
+
 				};
 			}])
 	.directive('albumSongQuestion', function(){

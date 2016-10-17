@@ -1,8 +1,11 @@
 <div class="jumbotron">
 <h1>Which album does the song "{{data.question.name}}" belong to?</h1>
 
+<p style="color:red" ng-show="status == false">FALSE!</p>
+<p style="color:green" ng-show="status == true">TRUE!</p>
 
-<a class="btn btn-primary btn-lg" role="button" ng-click="select(option)" ng-repeat="option in data.options">
+<a class="btn btn-default" role="button" ng-click="select(option)" 
+ng-class="{'btn-success': (option == selected && status == true), 'btn-danger': (option == selected && status == false)}" ng-repeat="option in data.options">
 	{{option.name}}
 </a>
 
