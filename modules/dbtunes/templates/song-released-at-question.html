@@ -1,1 +1,9 @@
-<div class="jumbotron"><h1>song-released-at-question</h1></div>
+<div class="jumbotron">
+<h1>Which song was released before "{{data.question.year}}"?</h1>
+
+
+<a class="btn btn-primary btn-lg" role="button" ng-click="select(option)" ng-repeat="option in data.options">
+	{{option.name}}
+</a>
+
+</div>
